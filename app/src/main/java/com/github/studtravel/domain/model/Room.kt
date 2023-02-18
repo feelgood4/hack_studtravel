@@ -5,7 +5,7 @@ class Room(
     val id: String,
     val universityId: String,
     val timestamp: Long,
-    val dataRangeDto: DataRange,
+    val dataRange: DataRange,
     val amount: Double,
     val price: Double,
     val type: String,

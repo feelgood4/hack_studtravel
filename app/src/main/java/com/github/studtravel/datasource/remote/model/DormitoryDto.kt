@@ -10,5 +10,7 @@ class DormitoryDto(
     @SerializedName("universityId")
     val universityId: String,
     @SerializedName("rooms")
-    val rooms: Map<String, RoomDto>
+    val rooms: Map<String, RoomDto>,
+    @SerializedName("details")
+    val details: DormitoryDetailsDto
 )

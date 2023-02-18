@@ -10,5 +10,5 @@ class RoomDto(
     @SerializedName("timestamp")
     val timestamp: Long,
     @SerializedName("details")
-    val detailsDto: RoomDetailsDto
+    val details: RoomDetailsDto
 )
