@@ -12,7 +12,7 @@ import com.github.studtravel.R
 class SplashScreenActivity : AppCompatActivity() {
 
   companion object {
-    const val SPLASH_SCREEN_TIME_OUT = 2000L
+    const val SPLASH_SCREEN_TIME_OUT = 1500L
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
