@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class CoordinatesDto(
     @SerializedName("latitude")
-    val latitude: String,
+    val latitude: String?,
     @SerializedName("longitude")
-    val longitude: String
+    val longitude: String?
 )

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class RoomDetailsDto(
     @SerializedName("dataRange")
-    val dataRange: DataRangeDto,
+    val dataRange: DataRangeDto?,
     @SerializedName("amount")
     val amount: String,
     @SerializedName("price")

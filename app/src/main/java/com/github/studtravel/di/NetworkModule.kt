@@ -1,5 +1,6 @@
 package com.github.studtravel.di
 
+import com.github.studtravel.data.service.INetworkService
 import com.github.studtravel.datasource.remote.NetworkService
 import com.github.studtravel.datasource.remote.api.StudTravelApi
 import dagger.Module
@@ -41,7 +42,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNetworkService(api: StudTravelApi): NetworkService {
+    fun provideNetworkService(api: StudTravelApi): INetworkService {
         return NetworkService(api)
     }
 

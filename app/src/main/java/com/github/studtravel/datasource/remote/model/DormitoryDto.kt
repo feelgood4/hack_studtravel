@@ -12,5 +12,5 @@ class DormitoryDto(
     @SerializedName("rooms")
     val rooms: Map<String, RoomDto>,
     @SerializedName("details")
-    val details: DormitoryDetailsDto
+    val details: DormitoryDetailsDto?
 )
