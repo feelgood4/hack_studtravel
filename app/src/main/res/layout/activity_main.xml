@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_background"
     tools:context=".presentation.activity.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/loginFragmentContainerView"
-        android:name="com.github.studtravel.presentation.screen.login.LoginFragment"
+        android:name="com.github.studtravel.presentation.screen.main_search.MainTabFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />

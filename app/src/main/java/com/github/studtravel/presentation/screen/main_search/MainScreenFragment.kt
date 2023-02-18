@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.github.studtravel.databinding.FragmentMainBinding
 import com.github.studtravel.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainScreenFragment: Fragment() {
+class MainScreenFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
 
     private val binding get() = _binding!!
@@ -29,8 +30,13 @@ class MainScreenFragment: Fragment() {
         viewModel.getAllDormitories()
         return binding.root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        fun createInstance(): MainScreenFragment = MainScreenFragment()
     }
 }
