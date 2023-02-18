@@ -12,14 +12,18 @@ import com.github.studtravel.presentation.screen.login.LoginFormState
 import com.github.studtravel.presentation.screen.login.LoginResult
 import com.github.studtravel.domain.repository.IDormitoryRepository
 import com.github.studtravel.domain.repository.ILoginRepository
+import com.github.studtravel.domain.repository.IPreferencesRepository
+import com.github.studtravel.presentation.screen.interests.model.Interest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
   private val dormitoryRepository: IDormitoryRepository,
-  private val loginRepository: ILoginRepository
+  private val loginRepository: ILoginRepository,
+  private val preferencesRepository: IPreferencesRepository
 ) : ViewModel() {
 
   private val _loginForm = MutableLiveData<LoginFormState>()
@@ -27,6 +31,9 @@ class MainViewModel @Inject constructor(
 
   private val _loginResult = MutableLiveData<LoginResult>()
   val loginResult: LiveData<LoginResult> = _loginResult
+
+  val userIsLoggedIn
+    get() = loginRepository.isLoggedIn()
 
   fun login(username: String, password: String) {
     viewModelScope.launch {
@@ -60,6 +67,13 @@ class MainViewModel @Inject constructor(
 
   private fun isPasswordValid(password: String): Boolean {
     return password.length > 5
+  }
+
+  fun saveUserInterests(interests: List<Interest>) {
+    val result = interests.filter { it.isChecked }
+    viewModelScope.launch(Dispatchers.IO) {
+      preferencesRepository.saveUserInterests(emptyList())
+    }
   }
 
   fun getArticles() {

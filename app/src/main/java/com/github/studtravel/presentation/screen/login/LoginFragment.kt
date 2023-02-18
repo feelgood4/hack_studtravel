@@ -12,7 +12,6 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.github.studtravel.R
 import com.github.studtravel.databinding.FragmentLoginBinding
 import com.github.studtravel.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +21,6 @@ class LoginFragment : Fragment() {
 
   private val viewModel: MainViewModel by viewModels()
   private var _binding: FragmentLoginBinding? = null
-
   private val binding get() = _binding!!
 
   override fun onCreateView(
@@ -42,6 +40,7 @@ class LoginFragment : Fragment() {
     val usernameEditText = binding.username
     val passwordEditText = binding.password
     val loginButton = binding.login
+    val skipButton = binding.skip
     val loadingProgressBar = binding.loading
 
     viewModel.loginFormState.observe(viewLifecycleOwner,
@@ -105,13 +104,19 @@ class LoginFragment : Fragment() {
         passwordEditText.text.toString()
       )
     }
+
+    skipButton.setOnClickListener {
+      loadingProgressBar.visibility = View.INVISIBLE
+      skipLogin()
+    }
+  }
+
+  private fun skipLogin() {
+    // TODO implement switch to main screen
   }
 
   private fun updateUiWithUser(model: LoggedInUserView) {
-    val welcome = getString(R.string.welcome) + model.displayName
-    // TODO : initiate successful logged in experience
-    val appContext = context?.applicationContext ?: return
-    Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+    // TODO implement switch to main screen
   }
 
   private fun showLoginFailed(@StringRes errorString: Int) {
