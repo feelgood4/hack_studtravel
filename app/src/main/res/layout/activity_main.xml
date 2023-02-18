@@ -7,8 +7,8 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/loginFragmentContainerView"
-        android:name="com.github.studtravel.presentation.screen.main_search.MainScreenFragment"
+        android:name="com.github.studtravel.presentation.screen.login.LoginFragment"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1" />
 </LinearLayout>
