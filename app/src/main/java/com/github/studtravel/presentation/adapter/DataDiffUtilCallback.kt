@@ -1,7 +1,7 @@
 package com.github.studtravel.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.github.studtravel.presentation.model.RecyclerViewItem
+import com.github.studtravel.presentation.model.recyclerview.RecyclerViewItem
 
 class DataDiffUtilCallback<T : RecyclerViewItem>(
     private val oldList: List<T>,

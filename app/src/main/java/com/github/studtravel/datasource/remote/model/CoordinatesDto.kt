@@ -3,8 +3,8 @@ package com.github.studtravel.datasource.remote.model
 import com.google.gson.annotations.SerializedName
 
 class CoordinatesDto(
-    @SerializedName("latitude")
+    @SerializedName("lat")
     val latitude: String?,
-    @SerializedName("longitude")
+    @SerializedName("lng")
     val longitude: String?
 )

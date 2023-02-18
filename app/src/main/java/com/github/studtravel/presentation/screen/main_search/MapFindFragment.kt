@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.github.studtravel.databinding.MapFindFragmentBinding
+import com.github.studtravel.presentation.model.map.PlaceItem
 import com.github.studtravel.presentation.viewmodel.MainViewModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.clustering.ClusterManager
+import kotlinx.coroutines.launch
 
 class MapFindFragment : Fragment() {
     private var _binding: MapFindFragmentBinding? = null
@@ -22,24 +25,8 @@ class MapFindFragment : Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
 
-    private val mapReady = OnMapReadyCallback {
-        val ss = 1
-        val rr = ss
-        //            viewModel.dormitories.observe(viewLifecycleOwner) { dormitories ->
-//                val coordinates = dormitories.map { dormitory ->
-//                    Pair(dormitory.info?.latitude, dormitory.info?.longitude)
-//                }.filter {
-//                    it.first != null && it.second != null
-//                }.map { it as Pair<Double, Double> }
-//                val markerOptions = coordinates.map {it ->
-//                    MarkerOptions().apply {
-//                        position(LatLng(it.first, it.second))
-//                    }
-//                }
-//                markerOptions.forEach {
-//                    map.addMarker(it)
-//                }
-//            }
+    private val mapReady = OnMapReadyCallback { map ->
+        map.setupMap()
     }
 
     override fun onCreateView(
@@ -56,6 +43,28 @@ class MapFindFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         mapView.onResume()
+    }
+
+    private fun GoogleMap.setupMap() {
+        viewModel.dormitories.observe(viewLifecycleOwner) { dormitories ->
+            lifecycleScope.launch {
+                val coordinates = dormitories.mapNotNull { dormitory ->
+                    if (dormitory.info?.latitude != null && dormitory.info?.longitude != null) {
+                        LatLng(dormitory.info.latitude, dormitory.info.longitude)
+                    } else null
+                }
+                val clusterManager =
+                    ClusterManager<PlaceItem>(requireContext(), this@setupMap).apply {
+                        val placeItems = coordinates.map {
+                            PlaceItem(it, "0", "0")
+                        }
+                        addItems(placeItems)
+                    }
+                clusterManager.setOnClusterItemClickListener { true }
+                setOnCameraIdleListener(clusterManager)
+                setOnMarkerClickListener(clusterManager)
+            }
+        }
     }
 
     companion object {

@@ -3,7 +3,7 @@ package com.github.studtravel.presentation.extension
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.studtravel.presentation.adapter.BindableAdapter
-import com.github.studtravel.presentation.model.RecyclerViewItem
+import com.github.studtravel.presentation.model.recyclerview.RecyclerViewItem
 
 @Suppress("UNCHECKED_CAST")
 @BindingAdapter("items")

@@ -1,7 +1,7 @@
-package com.github.studtravel.presentation.model
+package com.github.studtravel.presentation.model.recyclerview
 
 interface RecyclerViewItem {
-    val id: String
+    val id: Int
     val layoutId: Int
     val variableId: Int
 }

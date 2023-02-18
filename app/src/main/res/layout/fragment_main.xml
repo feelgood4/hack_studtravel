@@ -12,7 +12,6 @@
     android:layout_height="match_parent">
 
     <!--    app:loadingState="@{vm.stateLoading}"-->
-<!--    app:items="@{vm.users}"-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/domitory_recycler"

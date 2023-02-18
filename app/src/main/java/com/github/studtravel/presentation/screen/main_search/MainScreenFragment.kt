@@ -27,6 +27,7 @@ class MainScreenFragment : Fragment() {
         _binding = FragmentMainBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
         binding.vm = viewModel
+        binding.domitoryRecycler.setItemViewCacheSize(300)
         viewModel.getAllDormitories()
         return binding.root
     }

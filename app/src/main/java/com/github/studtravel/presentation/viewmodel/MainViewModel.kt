@@ -1,5 +1,6 @@
 package com.github.studtravel.presentation.viewmodel
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,6 +16,7 @@ import com.github.studtravel.domain.repository.ILoginRepository
 import com.github.studtravel.presentation.mapper.toViewData
 import com.github.studtravel.presentation.model.DormitoryViewData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,6 +25,10 @@ class MainViewModel @Inject constructor(
   private val dormitoryRepository: IDormitoryRepository,
   private val loginRepository: ILoginRepository
 ) : ViewModel() {
+
+  private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+    Log.d("NetworkError", "Error message")
+  }
 
   private val _loginForm = MutableLiveData<LoginFormState>()
   val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -68,7 +74,7 @@ class MainViewModel @Inject constructor(
   }
 
   fun getAllDormitories(){
-    viewModelScope.launch {
+    viewModelScope.launch(exceptionHandler) {
       val newList = dormitoryRepository.getAllDormitories()
       _dormitories.value = newList.map { it.toViewData() }
     }
