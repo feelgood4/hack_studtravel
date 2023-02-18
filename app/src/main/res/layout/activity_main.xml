@@ -7,7 +7,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/loginFragmentContainerView"
-        android:name="com.github.studtravel.presentation.screen.login.LoginFragment"
+        android:name="com.github.studtravel.presentation.screen.main_search.MainScreenFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />

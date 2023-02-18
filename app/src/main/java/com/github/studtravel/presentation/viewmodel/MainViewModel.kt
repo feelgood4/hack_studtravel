@@ -12,6 +12,8 @@ import com.github.studtravel.presentation.screen.login.LoginFormState
 import com.github.studtravel.presentation.screen.login.LoginResult
 import com.github.studtravel.domain.repository.IDormitoryRepository
 import com.github.studtravel.domain.repository.ILoginRepository
+import com.github.studtravel.presentation.mapper.toViewData
+import com.github.studtravel.presentation.model.DormitoryViewData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,6 +29,9 @@ class MainViewModel @Inject constructor(
 
   private val _loginResult = MutableLiveData<LoginResult>()
   val loginResult: LiveData<LoginResult> = _loginResult
+
+  private val _dormitories = MutableLiveData<List<DormitoryViewData>>()
+  val dormitories: LiveData<List<DormitoryViewData>> = _dormitories
 
   fun login(username: String, password: String) {
     viewModelScope.launch {
@@ -62,10 +67,10 @@ class MainViewModel @Inject constructor(
     return password.length > 5
   }
 
-  fun getArticles() {
+  fun getAllDormitories(){
     viewModelScope.launch {
-      val ss = dormitoryRepository.getAllDormitories()
-      val s = ss
+      val newList = dormitoryRepository.getAllDormitories()
+      _dormitories.value = newList.map { it.toViewData() }
     }
   }
 }
