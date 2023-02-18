@@ -14,6 +14,8 @@ class MainViewModel @Inject constructor(
 
     fun getArticles() {
         viewModelScope.launch {
+            val ss = networkService.getArticles()
+            val s = ss
         }
     }
 }
