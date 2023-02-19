@@ -5,7 +5,7 @@ import com.github.studtravel.R
 import com.github.studtravel.presentation.model.recyclerview.RecyclerViewItem
 
 data class DormitoryViewData(
-    override val id: Int,
+    override val id: String,
     val timestamp: Long,
     val universityId: String,
     val rooms: List<RoomViewData>,

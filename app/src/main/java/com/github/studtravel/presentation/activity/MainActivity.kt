@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.github.studtravel.R
 import com.github.studtravel.databinding.ActivityMainBinding
 import com.github.studtravel.presentation.screen.login.LoginFragment
@@ -35,5 +36,22 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.rootFragmentContainer, currentStartFragment, "startFragment")
             .commit()
+
+        binding.navView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.main -> setCurrentFragment(MainTabFragment())
+                R.id.events -> setCurrentFragment(MainTabFragment())
+                R.id.achives -> setCurrentFragment(MainTabFragment())
+                R.id.routes -> setCurrentFragment(MainTabFragment())
+                R.id.profile -> setCurrentFragment(MainTabFragment())
+            }
+            true
+        }
     }
+
+    private fun setCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.rootFragmentContainer, fragment)
+            commit()
+        }
 }

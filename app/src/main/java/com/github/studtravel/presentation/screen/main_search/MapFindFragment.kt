@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.github.studtravel.databinding.CardDormitoryBinding
 import com.github.studtravel.databinding.MapFindFragmentBinding
 import com.github.studtravel.presentation.model.map.PlaceItem
 import com.github.studtravel.presentation.viewmodel.MainViewModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.maps.android.clustering.ClusterManager
 import kotlinx.coroutines.launch
 
@@ -50,21 +52,38 @@ class MapFindFragment : Fragment() {
             lifecycleScope.launch {
                 val coordinates = dormitories.mapNotNull { dormitory ->
                     if (dormitory.info?.latitude != null && dormitory.info?.longitude != null) {
-                        LatLng(dormitory.info.latitude, dormitory.info.longitude)
+                        Pair(dormitory.id, LatLng(dormitory.info.latitude, dormitory.info.longitude))
                     } else null
                 }
                 val clusterManager =
                     ClusterManager<PlaceItem>(requireContext(), this@setupMap).apply {
                         val placeItems = coordinates.map {
-                            PlaceItem(it, "0", "0")
+                            val id = it.first
+                            val coordinates = it.second
+                            PlaceItem(id, coordinates, "0", "0")
                         }
                         addItems(placeItems)
                     }
-                clusterManager.setOnClusterItemClickListener { true }
+                clusterManager.setOnClusterItemClickListener {
+                    createBottomSheetDialog(it.id)
+                    true
+                }
+
                 setOnCameraIdleListener(clusterManager)
                 setOnMarkerClickListener(clusterManager)
             }
         }
+    }
+
+    private fun createBottomSheetDialog(id: String) {
+        val dialog = BottomSheetDialog(requireContext()).apply {
+            s
+        }
+        val binding = CardDormitoryBinding.inflate(layoutInflater)
+        val item = viewModel.dormitories.value?.firstOrNull { it.id == id } ?: return
+        binding.item = item
+        dialog.setContentView(binding.root)
+        dialog.show()
     }
 
     companion object {

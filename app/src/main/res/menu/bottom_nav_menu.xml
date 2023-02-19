@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation">
+
+    <item
+        android:id="@+id/main"
+        android:name="com.github.studtravel.presentation.screen.main_search.MainTabFragment"
+        android:title="Главная"
+        android:icon="@drawable/ic_launcher_background"/>
+
+    <item
+        android:id="@+id/events"
+        android:name="com.github.studtravel.presentation.screen.main_search.MainTabFragment"
+        android:title="События"
+        android:icon="@drawable/ic_launcher_background"/>
+
+    <item
+        android:id="@+id/achives"
+        android:name="com.github.studtravel.presentation.screen.main_search.MainTabFragment"
+        android:title="Ачивки"
+        android:icon="@drawable/ic_launcher_background"/>
+    <item
+        android:id="@+id/routes"
+        android:name="com.github.studtravel.presentation.screen.main_search.MainTabFragment"
+        android:title="Маршруты"
+        android:icon="@drawable/ic_launcher_background"/>
+    <item
+        android:id="@+id/profile"
+        android:name="com.github.studtravel.presentation.screen.main_search.MainTabFragment"
+        android:title="Профиль"
+        android:icon="@drawable/ic_launcher_background"/>
+</menu>

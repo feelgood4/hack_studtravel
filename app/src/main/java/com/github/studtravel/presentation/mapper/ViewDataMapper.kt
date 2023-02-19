@@ -42,7 +42,7 @@ fun DormitoryInfo.toViewData(): DormitoryInfoViewData = DormitoryInfoViewData(
 )
 
 fun Dormitory.toViewData(): DormitoryViewData = DormitoryViewData(
-    id = id.hashCode(),
+    id = id,
     universityId = universityId,
     timestamp = timestamp,
     rooms = rooms.map { it.toViewData() },
