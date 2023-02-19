@@ -13,15 +13,31 @@
 
     <!--    app:loadingState="@{vm.stateLoading}"-->
 
+    <TextView
+        android:id="@+id/count_variants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:countVariants="@{vm.dormitories.size()}"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginStart="16dp"
+        tools:text="1000 вариантов"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/domitory_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:items="@{vm.dormitories}"
+        android:layout_marginTop="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/count_variants"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/card_dormitory" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
