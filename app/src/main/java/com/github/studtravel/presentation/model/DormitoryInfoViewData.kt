@@ -1,6 +1,6 @@
-package com.github.studtravel.domain.model
+package com.github.studtravel.presentation.model
 
-data class DormitoryInfo(
+data class DormitoryInfoViewData(
     val name: String,
     val city: String,
     val longitude: Double?,

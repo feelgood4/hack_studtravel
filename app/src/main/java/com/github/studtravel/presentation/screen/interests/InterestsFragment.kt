@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.github.studtravel.R
 import com.github.studtravel.databinding.FragmentInterestsBinding
 import com.github.studtravel.presentation.screen.interests.model.Interest
+import com.github.studtravel.presentation.screen.main_search.MainTabFragment
 import com.github.studtravel.presentation.viewmodel.MainViewModel
 
 class InterestsFragment : Fragment() {
@@ -38,7 +39,6 @@ class InterestsFragment : Fragment() {
     val confirmButton = binding.confirm
     val skipButton = binding.skip
     val interestsList = binding.interestsList
-
 
     val interestsListData = mutableListOf(
       Interest(
@@ -89,13 +89,15 @@ class InterestsFragment : Fragment() {
       adapter = interestsAdapter
     }
 
-    confirmButton.setOnClickListener {
-      // TODO сохранение и переход на основной экран
+    val goMainScreen = View.OnClickListener {
+      parentFragmentManager
+        .beginTransaction()
+        .replace(R.id.rootFragmentContainer, MainTabFragment(), "MainScreen")
+        .commit()
     }
 
-    skipButton.setOnClickListener {
-      // TODO переход на основной экран
-    }
+    confirmButton.setOnClickListener(goMainScreen)
+    skipButton.setOnClickListener(goMainScreen)
   }
 
   override fun onDestroyView() {
