@@ -9,4 +9,12 @@
     <string name="invalid_username">Неправильное имя пользователя</string>
     <string name="invalid_password">Пароль должен быть длиннее 5 символов</string>
     <string name="login_failed">"Не удалось войти"</string>
+    <string name="change_interests">Выбор интересов</string>
+
+    <string name="art_interest_name">Искусство</string>
+    <string name="science_interest_name">Наука</string>
+    <string name="travel_interest_name">Путешествия</string>
+    <string name="music_interest_name">Музыка</string>
+    <string name="fest_interest_name">Фестивали</string>
+    <string name="nature_interest_name">Природа</string>
 </resources>

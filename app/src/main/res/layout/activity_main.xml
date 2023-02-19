@@ -7,8 +7,7 @@
     tools:context=".presentation.activity.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/loginFragmentContainerView"
-        android:name="com.github.studtravel.presentation.screen.main_search.MainTabFragment"
+        android:id="@+id/rootFragmentContainer"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />

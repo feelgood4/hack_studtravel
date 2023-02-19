@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FBD386</color>
+    <color name="primary">#EEBC5B</color>
 
     <color name="secondary">#9E9E9E</color>
+
+    <color name="secondaryVariant">#E6E6E6</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
