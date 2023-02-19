@@ -76,9 +76,7 @@ class MapFindFragment : Fragment() {
     }
 
     private fun createBottomSheetDialog(id: String) {
-        val dialog = BottomSheetDialog(requireContext()).apply {
-            s
-        }
+        val dialog = BottomSheetDialog(requireContext())
         val binding = CardDormitoryBinding.inflate(layoutInflater)
         val item = viewModel.dormitories.value?.firstOrNull { it.id == id } ?: return
         binding.item = item

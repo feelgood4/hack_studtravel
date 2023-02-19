@@ -1,6 +1,7 @@
 package com.github.studtravel.presentation.activity
 
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val userIsAuthorized = viewModel.userIsLoggedIn
@@ -47,6 +49,10 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    fun showNavBottom() {
+        binding.navView.visibility = View.VISIBLE
     }
 
     private fun setCurrentFragment(fragment: Fragment) =

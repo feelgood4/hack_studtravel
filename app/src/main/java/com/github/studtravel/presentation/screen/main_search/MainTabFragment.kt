@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.github.studtravel.databinding.FragmentMainPagerBinding
+import com.github.studtravel.presentation.activity.MainActivity
 import com.github.studtravel.presentation.viewmodel.MainViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -34,6 +35,7 @@ class MainTabFragment : Fragment() {
             }
         }.attach()
 
+        (requireActivity() as MainActivity).showNavBottom()
         return binding.root
     }
 
